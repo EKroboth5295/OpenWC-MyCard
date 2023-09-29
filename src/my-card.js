@@ -8,6 +8,7 @@ class MyCard extends LitElement {
   }
 
   static styles = css`
+  
 .wrapper {
   width: 400px;
   border: 2px solid black;
@@ -83,17 +84,6 @@ details {
 
   render() {
     return html`
-      <main>
-      <div class="buttons">
-<button class="duplicate">Duplicate</button>
-  
-<button class="changeHeading">Change Heading</button>
-
-<button id="deleteInstance">Delete Last Instance</button>
-  
-<button data-toggle-btn>Toggle Details</button>
-</div>
-
 <div class="wrapper">
   <div class="container">
   <img class="image" src="https://mcdn.wallpapersafari.com/medium/71/81/0VgmpU.jpg"/>

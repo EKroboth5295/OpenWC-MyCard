@@ -20,9 +20,54 @@
 </head>
 
 <body>
-  <my-card></my-card>
+  <div class="buttons">
+    <button class="duplicate">Duplicate</button>      
+    <button class="changeHeading">Change Heading</button>    
+    <button id="deleteInstance">Delete Last Instance</button>
+    <button data-toggle-btn>Toggle Details</button>
+  </div>
+  <div id="app">
+    <my-card></my-card>
+</div>
 
   <script type="module" src="./src/my-card.js"></script>
+  <script>
+
+document.querySelector('button[data-toggle-btn]').addEventListener('click', (e) => {
+  const details = document.querySelector('my-card').shadowRoot.querySelector('details');
+  console.log(details);
+  if (details.getAttribute('open')) {
+    details.removeAttribute('open');
+  }
+  else {
+    details.setAttribute('open','open');    
+  }
+});
+
+document.querySelector('.duplicate').addEventListener('click', function(e) {
+  const itemToClone = document.querySelector('my-card').cloneNode();
+  document.querySelector('#app').appendChild(itemToClone);
+});
+
+document.querySelector('.changeHeading').addEventListener('click', function(e) {
+  let name = prompt("Rename Title: ");
+  if (name) {
+    document.querySelector('my-card').shadowRoot.querySelector('.wrapper h1').innerText = name;
+  }
+});
+
+document.querySelector('#deleteInstance').addEventListener('click', function(e) {
+  let wantsTo = confirm("Are you sure?");
+  if (wantsTo) {
+    if (document.querySelector('#app :last-child') !== document.querySelector('my-card')) {
+      document.querySelector('#app :last-child').remove();      
+    }
+    else {
+      alert("You Cannot Delete With 1 Card Left!");
+    }
+  }
+});
+  </script>
 </body>
 
 </html>
