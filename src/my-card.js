@@ -98,6 +98,7 @@ details {
     this.header = 'My Card: Mario';
     this.image = 'https://mcdn.wallpapersafari.com/medium/71/81/0VgmpU.jpg';
     this.details = 'My card is displaying one of my favorite video game characters ever, Mario. I chose this character because it is a character that means a lot to me through my life. This card design has the title at the top, displayed in the top-center of the card, with a photo beneath it. The photo itself displays mario jumping upwards, with a light blue background that contrasts well with the rest of the card.';
+    this.dark = false;
   }
 
   render() {
