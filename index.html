@@ -25,9 +25,10 @@
     <button class="changeHeading">Change Heading</button>    
     <button id="deleteInstance">Delete Last Instance</button>
     <button data-toggle-btn>Toggle Details</button>
+    <button id="background">Toggle background color</button>
   </div>
   <div id="app">
-    <my-card></my-card>
+    <my-card details="test"><h1 slot="Header">LKALSMDIJ</h1></my-card>
 </div>
 
   <script type="module" src="./src/my-card.js"></script>
@@ -66,6 +67,11 @@ document.querySelector('#deleteInstance').addEventListener('click', function(e) 
       alert("You Cannot Delete With 1 Card Left!");
     }
   }
+});
+
+document.querySelector('#background').addEventListener('click', function(e) {
+  const card = document.querySelector('my-card');
+  card.dark = !card.dark;
 });
   </script>
 </body>

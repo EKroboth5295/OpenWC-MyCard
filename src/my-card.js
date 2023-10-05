@@ -4,7 +4,11 @@ const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 
 class MyCard extends LitElement {
   static properties = {
+    image: { type: String },
+    alt: { type: String },
     header: { type: String },
+    details: { type: String },
+    dark: { type: Boolean, reflect: true }
   }
 
   static styles = css`
@@ -31,6 +35,7 @@ class MyCard extends LitElement {
   background-color: CornflowerBlue;
 }
 
+
 .buttons button:active {
   background-color: CornflowerBlue;
 }
@@ -47,6 +52,10 @@ details {
 .details summary {
   font-size: 20px;
   font-weight: bold;
+}
+
+:host([dark]) .container {
+  background-color: darkgray;
 }
 
 @media only screen and (max-width: 1200px){
@@ -75,30 +84,39 @@ details {
     display: none;
   }
 }
+
+.desc-txt ::slotted(img) {
+  max-width: 100px;
+  display: block;
+  margin: 0 auto;
+}
   `;
 
   constructor() {
     super();
-    this.header = 'My app';
+    this.alt = 'Mario Image Card';
+    this.header = 'My Card: Mario';
+    this.image = 'https://mcdn.wallpapersafari.com/medium/71/81/0VgmpU.jpg';
+    this.details = 'My card is displaying one of my favorite video game characters ever, Mario. I chose this character because it is a character that means a lot to me through my life. This card design has the title at the top, displayed in the top-center of the card, with a photo beneath it. The photo itself displays mario jumping upwards, with a light blue background that contrasts well with the rest of the card.';
   }
 
   render() {
     return html`
-<div class="wrapper">
-  <div class="container">
-  <img class="image" src="https://mcdn.wallpapersafari.com/medium/71/81/0VgmpU.jpg"/>
-  <div class="header">
-    <h1>My Card: Mario</h1>
-    </div>
-  
-<details class="details">
-<summary>Details</summary>
-<div class="desc-txt">
-    <p>My card is displaying one of my favorite video game characters ever, Mario. I chose this character because it is a character that means a lot to me through my life. This card design has the title at the top, displayed in the top-center of the card, with a photo beneath it. The photo itself displays mario jumping upwards, with a light blue background that contrasts well with the rest of the card.</p>
-    </div>
-    </details>
-</div>
-</div>
+      <div class="wrapper">
+        <div class="container">
+          <img class="image" src="${this.image}" alt="${this.alt}"/>
+            <div class="header">
+            <h1>${this.header}</h1>
+            </div>
+              <details class="details">
+              <summary>Details</summary>
+                <div class="desc-txt">
+                  <p>${this.details}</p>
+                  <slot name='Header'></slot>
+                </div>
+              </details>
+        </div>
+      </div>
     `;
   }
 }
